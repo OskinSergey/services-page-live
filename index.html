@@ -32,13 +32,77 @@
     <meta property="og:locale" content="ru_RU" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://oskinsergey.github.io/services-page-live/" />
-    <link rel="icon" type="image/svg+xml" href="/services-page-live/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <!-- Детектор переполнений вёрстки: работает только с ?debug=1 в адресе -->
-    <script src="/services-page-live/layout-guard.js" defer></script>
+    <script src="layout-guard.js" defer></script>
     <!-- Применение правок из прототипа админки (localStorage, issue #6): без правок — ничего не делает -->
-    <script src="/services-page-live/content-apply.js" defer></script>
-    <script type="module" crossorigin src="/services-page-live/assets/index-UjMEiVld.js"></script>
-    <link rel="stylesheet" crossorigin href="/services-page-live/assets/index-DmN76RHr.css">
+    <script src="content-apply.js" defer></script>
+    <!-- Превью палитр #25: ?theme=a|b|c|d (a=Графит+золото, b=Ночной сапфир, c=Тёплая керамика, d=Лайм 2.0); без параметра — керамика (утверждена) -->
+    <link id="theme" rel="stylesheet" href="themes/theme-base.css" />
+    <!-- Шрифты П1 (#25): субсеты под реальные тексты, инлайн @font-face (-1 RTT), preload критического пути H1 -->
+    <style>
+      @font-face {
+        font-family: 'Unbounded';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('fonts/unb700-sub-cyr.woff2') format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      @font-face {
+        font-family: 'Unbounded';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('fonts/unb700-sub-lat.woff2') format('woff2');
+        unicode-range: U+0000-00FF, U+2000-206F, U+20BD;
+      }
+      @font-face {
+        font-family: 'Golos Text';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('fonts/golos400-sub-cyr.woff2') format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      @font-face {
+        font-family: 'Golos Text';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('fonts/golos400-sub-lat.woff2') format('woff2');
+        unicode-range: U+0000-00FF, U+2000-206F;
+      }
+      @font-face {
+        font-family: 'Golos Text';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url('fonts/golos600-sub-cyr.woff2') format('woff2');
+        unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      @font-face {
+        font-family: 'Golos Text';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url('fonts/golos600-sub-lat.woff2') format('woff2');
+        unicode-range: U+0000-00FF, U+2000-206F;
+      }
+    </style>
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/unb700-sub-cyr.woff2" />
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="fonts/unb700-sub-lat.woff2" />
+    <script>
+      (function () {
+        var t = new URLSearchParams(location.search).get('theme');
+        if (t && /^[abcd]$/.test(t)) {
+          var link = document.getElementById('theme');
+          link.href = link.href.replace(/theme-[a-z]+\.css$/, 'theme-' + t + '.css');
+        }
+      })();
+    </script>
+    <script type="module" crossorigin src="/services-page-live/assets/index-C1dMxjLx.js"></script>
+    <link rel="stylesheet" crossorigin href="/services-page-live/assets/index-BXeGu7_Y.css">
   </head>
   <body>
     <div id="root"></div>
